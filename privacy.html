@@ -30,16 +30,17 @@
 <main class="legal">
   <div class="wrap">
     <h1 class="ph">Privacy Policy</h1>
-    <p class="meta">Soundpost · Effective 18 June 2026</p>
+    <p class="meta">Soundpost · Effective 22 June 2026</p>
 
     <div class="prose">
       <div class="callout">
         <strong>The short version.</strong> Soundpost keeps your recordings, moods, places, and notes
         <strong>on your device</strong>, and — if you're signed into iCloud — backs them up to
         <strong>your own private iCloud database</strong> that only you can reach. There is no account to
-        create and no server of ours involved: we do not collect your personal data, we do not track you, and
-        we never receive, sell, or share your content. The only thing that ever reaches us is an anonymous
-        crash report (so we can fix bugs) — and only if it can't be tied back to you.
+        create, we do not track you, and we never receive, sell, or share your content — your audio, notes,
+        moods, and places never leave your device for us. The only data that reaches a server of ours is what's
+        needed to deliver a far-future reminder you've sealed — a <strong>content-free signal</strong>, never
+        your content (see <em>Cloud-backed reminders</em> below) — plus anonymous crash reports.
       </div>
 
       <h2>Who we are</h2>
@@ -71,7 +72,9 @@
         takes a single location reading and uses Apple's on-device/Apple-operated geocoding to turn it into a
         place name. The location is stored on your device with that capsule. You can skip this entirely.</li>
         <li><strong>Notifications</strong> — used to remind you when a sealed capsule is ready to resurface.
-        These are scheduled locally on your device.</li>
+        Near-term reminders are scheduled locally on your device. For reminders set far in the future, the app
+        can also enqueue them on our server so they can still arrive years later — see
+        <em>Cloud-backed reminders</em> below.</li>
       </ul>
 
       <h2>Diagnostics we do collect</h2>
@@ -81,6 +84,28 @@
       for tracking or advertising</strong>, and we strip request data so your capsule content (audio, notes,
       places) is not included. We use them solely to find and fix bugs. See
       <a href="https://sentry.io/privacy/" rel="noopener" target="_blank">Sentry's privacy policy</a>.</p>
+
+      <h2>Cloud-backed reminders (optional)</h2>
+      <p>A sealed capsule can be set to resurface far in the future — even years away. To help that reminder
+      arrive on its date when it's too far off for your device to hold reliably, Soundpost can enqueue it on its
+      own server (hosted on <strong>Supabase</strong>) and deliver it through <strong>Apple's Push Notification
+      service</strong>. This happens only when you are signed into iCloud; if you are signed out or offline,
+      reminders use your device's local schedule and nothing is sent. It is best-effort — "cloud-backed," not
+      guaranteed.</p>
+      <p>For this — and <strong>only</strong> this — three things leave your device:</p>
+      <ul>
+        <li>your device's <strong>Apple Push Notification token</strong> (so Apple can deliver the alert to this device);</li>
+        <li>an <strong>anonymous per-user key</strong> — a random value the app generates and keeps in your private
+        iCloud, used only to group your own devices' reminders. It is not your name, email, or Apple Account, and is
+        never combined with data from other apps or data brokers;</li>
+        <li><strong>content-free schedule details</strong>: the capsule's random identifier, the reminder's date and
+        time zone, and the kind of reminder.</li>
+      </ul>
+      <p>Your capsule's <strong>audio, notes, moods, and places never leave your device</strong> for this and are
+      never part of the push — the notification is only a signal, and the capsule is read back from your own
+      device. This data is used <strong>solely to deliver your reminders</strong>, is <strong>not used to track
+      you</strong>, and is <strong>not linked to your identity</strong>. You can remove it at any time (see
+      <em>Your control &amp; deletion</em>).</p>
 
       <h2>What we do NOT do</h2>
       <ul>
@@ -94,7 +119,9 @@
       <p>The only third parties involved are <strong>Apple</strong> (the operating system, local notifications,
       geocoding for optional place names, and <strong>iCloud/CloudKit</strong> for keeping your capsules in your
       own private iCloud database) and <strong>Sentry</strong> (anonymous crash/diagnostic reports as
-      described above). Your iCloud data is governed by
+      described above). For the optional <em>Cloud-backed reminders</em> above, the reminder schedule is stored on
+      our server host <strong>Supabase</strong>, which receives only the content-free schedule, your device's push
+      token, and the anonymous key — never your content. Your iCloud data is governed by
       <a href="https://www.apple.com/legal/privacy/" rel="noopener" target="_blank">Apple's privacy policy</a>.
       No other third party receives data from the app.</p>
 
@@ -107,6 +134,11 @@
         erase them everywhere, delete them in the app first, or remove Soundpost's data under iOS Settings →
         your name → iCloud → Manage Account Storage.</li>
         <li>You can turn off Microphone, Location, Notifications, or iCloud for Soundpost at any time in iOS Settings.</li>
+        <li>For <em>Cloud-backed reminders</em>: a reminder's record on our server is removed automatically when you
+        delete the capsule, unseal it, when it resurfaces, or when you sign out of iCloud. You can also clear
+        everything Soundpost keeps on its server at once with <strong>Delete my cloud data</strong> in the app —
+        it deletes the push tokens and reminder schedule and stops further collection. Push tokens that Apple
+        reports as no longer valid are pruned automatically.</li>
       </ul>
 
       <h2>Children</h2>
